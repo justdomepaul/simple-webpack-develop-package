@@ -2,7 +2,7 @@ var path = require('path')
 
 module.exports = {
     entry: {
-        itpdbtableapp: './src/itp-db-table/app.js'
+        itpdbtableapp: './src/db-table/app.js'
     },
     output: {
         path: path.join(__dirname, '/dist'),
