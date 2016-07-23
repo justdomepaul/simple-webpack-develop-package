@@ -2,7 +2,8 @@ var path = require('path')
 
 module.exports = {
     entry: {
-        dbtableapp: './src/app/dbtable/app.jsx'
+        comment: './src/app/comment/app.jsx',
+        // dbtableapp: './src/app/dbtable/app.jsx'
     },
     output: {
         path: path.join(__dirname, '/dist'),

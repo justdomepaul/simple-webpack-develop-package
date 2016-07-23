@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base dist/",
     "prod": "webpack --config webpack-production.config.js -p"
   },
   "author": "Max",
