@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
+    "watch": "webpack -w --progress --colors",
     "build": "webpack -p --config webpack.production.config.js --progress --profile --colors",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base dist/"
   },

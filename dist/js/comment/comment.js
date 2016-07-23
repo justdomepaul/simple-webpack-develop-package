@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -80,14 +80,14 @@
 	    }
 
 	    _createClass(CommentBox, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
+	                "div",
 	                null,
-	                'Hello, ',
+	                "Hello, ",
 	                this.props.name,
-	                '!',
+	                "!",
 	                _react2.default.createElement(_commentlist2.default, null),
 	                _react2.default.createElement(_commentform2.default, null)
 	            );
@@ -97,7 +97,7 @@
 	    return CommentBox;
 	}(_react2.default.Component);
 
-	(0, _reactDom.render)(_react2.default.createElement(CommentBox, { name: 'world' }), document.getElementById('content'));
+	(0, _reactDom.render)(_react2.default.createElement(CommentBox, { name: "world" }), document.getElementById("content"));
 
 /***/ },
 /* 1 */
