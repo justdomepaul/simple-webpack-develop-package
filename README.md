@@ -4,17 +4,21 @@ simple webpack develop config file
 
 ### prepare list
 `
+    > npm install eslint -g
+`
+
+`
     > npm install webpack webpack-dev-server -g
 `
-<br/>
+
 `
     > npm install -g typescript typings webpack
 `
-<br/>
+
 `
     > npm install
 `
-<br/>
+
 `
     > npm link typescript
 `
