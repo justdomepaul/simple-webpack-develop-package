@@ -3,6 +3,7 @@
 simple webpack develop config file
 
 ### prepare list
+----------------
 `
     > npm install eslint -g
 `
@@ -20,11 +21,14 @@ simple webpack develop config file
 `
 
 ### Entry folder
+----------------
     > dist/
 ### Entry root
+--------------
     > index.html
 
 ### develop step
+----------------
     > 1. src/app is application folder and add your new application in it.
     > 2. src/component is component folder and add your component in it.
     > 3. start your webpack
