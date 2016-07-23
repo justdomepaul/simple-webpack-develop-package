@@ -1,13 +1,4 @@
 var path = require('path')
-var webpack = require("webpack");
-
-var definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
-  __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
-});
-
-// var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
-// => 注意到這邊的參數會轉換成檔名輸出所以請記得加副檔名
 
 module.exports = {
     entry: {
@@ -20,22 +11,17 @@ module.exports = {
         filename: 'js/[name]/[name].js'
         // [name] 會依據上面 entry 的屬性名稱變動
     },
-    eslint: {
-        configFile: './.eslintrc.json',
-        failOnWarning: false,
-        failOnError: true
-    },
     module: {
-        preLoaders: [
-            {
-                test: /\.jsx$|\.js$/,
-                exclude: /node_modules/,
-                loader: 'eslint-loader'
-            }
-        ],
+        // preLoaders: [
+        //     {
+        //         test: /\.js$/,
+        //         exclude: /node_modules/,
+        //         loader: 'jshint-loader'
+        //     }
+        // ],
         loaders: [
             {
-                test: /\.jsx$|\.js$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
@@ -47,10 +33,6 @@ module.exports = {
         		test: /\.css$/,
         		loader: 'style-loader!css-loader'
         	},
-            {
-                test: /\.scss$/,
-                loader: 'style!css!sass'
-            },
         	{
         		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
         		loader: "file"
@@ -82,14 +64,12 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', 'json', '.scss', 'css']
+        extensions: ['', '.js', '.jsx']
     },
     devServer: {
         historyApiFallback: true,
         hot: true,
         inline: true,
         contentBase: './'
-    },
-    // plugins: [definePlugin, commonsPlugin],
-    plugins: [definePlugin],
+    }
 };

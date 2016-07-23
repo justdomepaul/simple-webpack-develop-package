@@ -1,8 +1,8 @@
-import React from "react";
-import {render} from "react-dom";
+import React from 'react';
+import {render} from 'react-dom';
 
-import CommentList from "../../component/comment/commentlist";
-import CommentForm from "../../component/comment/commentform";
+import CommentList from '../../component/comment/commentlist';
+import CommentForm from '../../component/comment/commentform';
 
 class CommentBox extends React.Component {
     render () {
@@ -12,11 +12,11 @@ class CommentBox extends React.Component {
                 <CommentList />
                 <CommentForm />
             </div>
-        );
+        )
     }
 }
 
 render(
     <CommentBox name="world"/>,
-    document.getElementById("content")
+    document.getElementById('content')
 );

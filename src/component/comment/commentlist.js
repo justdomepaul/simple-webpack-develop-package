@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class CommentList extends React.Component {
     render () {
@@ -6,7 +6,7 @@ class CommentList extends React.Component {
             <div className="commentList">
                 Hello, I am CommentList.
             </div>
-        );
+        )
     }
 }
 

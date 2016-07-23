@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class CommentForm extends React.Component {
     render () {
@@ -6,7 +6,7 @@ class CommentForm extends React.Component {
             <div className="commentForm">
                 Hello, I am a commentForm.
             </div>
-        );
+        )
     }
 }
 export default CommentForm;
