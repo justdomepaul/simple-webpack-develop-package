@@ -2,12 +2,12 @@ var path = require('path')
 
 module.exports = {
     entry: {
-        dbtableapp: './src/db-table/app.js'
+        dbtableapp: './src/app/dbtable/app.jsx'
     },
     output: {
         path: path.join(__dirname, '/dist'),
         publicPath: '/dist/',
-        filename: 'js/[name].js'
+        filename: 'js/[name]/[name].js'
         // [name] 會依據上面 entry 的屬性名稱變動
     },
     module: {
@@ -18,14 +18,17 @@ module.exports = {
         //         loader: 'jshint-loader'
         //     }
         // ],
-        loaders: [{
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            query: {
-                cacheDirectory: true,
-                presets: ['react', 'es2015', 'stage-1']
+        loaders: [
+            {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    cacheDirectory: true,
+                    presets: ['react', 'es2015', 'stage-1']
+                }
             }
-        }]
+        ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

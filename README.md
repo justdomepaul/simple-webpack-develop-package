@@ -2,13 +2,17 @@
 simple webpack develop config file
 
 `
-    > npm install webpack webpack-dev-server -g 
+    > npm install webpack webpack-dev-server -g
 `
 <br/>
 `
-    > npm install -g typescript typings webpack 
+    > npm install -g typescript typings webpack
 `
 <br/>
 `
-    > npm install 
+    > npm install
+`
+<br/>
+`
+    > npm link typescript
 `
