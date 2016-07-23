@@ -1,5 +1,5 @@
 # simple-webpack-develop-config
-===============================
+-------------------------------
 simple webpack develop config file
 
 ### prepare list
@@ -19,9 +19,9 @@ simple webpack develop config file
     > npm link typescript
 `
 
-##### entry folder
+### entry folder
     > dist/
-##### entry root
+### entry root
     > index.html
 
 ### Star to begint
