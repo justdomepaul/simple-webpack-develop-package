@@ -12,10 +12,6 @@ simple webpack develop config file
 `
 
 `
-    > npm install -g typescript typings webpack
-`
-
-`
     > npm install
 `
 
@@ -23,16 +19,15 @@ simple webpack develop config file
     > npm link typescript
 `
 
-### entry folder
+### Entry folder
     > dist/
-### entry root
+### Entry root
     > index.html
 
-### Star to begint
-`
-    > npm run dev
-`
-<br/>
-`
-    > http://localhost:8080/webpack-dev-server/index.html
-`
+### develop step
+    > 1. src/app is application folder and add your new application in it.
+    > 2. src/component is component folder and add your component in it.
+    > 3. start your webpack
+    > 4. npm run watch
+    > 5. npm run dev
+    > 6. browser to run http://localhost:8080/webpack-dev-server/index.html
