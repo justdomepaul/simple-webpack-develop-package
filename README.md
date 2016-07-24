@@ -1,8 +1,8 @@
-# simple-webpack-develop-config
+# Simple-webpack-develop-config
 
-simple webpack develop config file
+Simple webpack develop config file
 
-### prepare list
+### Prepare list
 ----------------
 `
     > npm install eslint -g
