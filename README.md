@@ -26,7 +26,6 @@ simple webpack develop config file
 ### Entry root
 --------------
     > index.html
-
 ### develop step
 ----------------
     > 1. src/app is application folder and add your new application in it.
@@ -35,3 +34,10 @@ simple webpack develop config file
     > 4. npm run watch
     > 5. npm run dev
     > 6. browser to run http://localhost:8080/webpack-dev-server/index.html
+
+### Npm command line
+--------------------
+    1. webpack to watch project
+    > npm run watch
+    2. webpack dev server to run
+    > npm run dev
