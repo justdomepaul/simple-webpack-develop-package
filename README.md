@@ -16,10 +16,6 @@ simple webpack develop config file
     > npm install
 `
 
-`
-    > npm link typescript
-`
-
 ### Entry folder
 ----------------
     > dist/
