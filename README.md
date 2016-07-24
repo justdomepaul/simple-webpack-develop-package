@@ -37,11 +37,11 @@ install dependency package
 ```
 
 ## Npm command line
-1. webpack to watch project
+webpack to watch project:
 ```    
     $ npm run watch
 ```
-2. webpack dev server to run
+webpack dev server to run:
 ```   
     $ npm run dev
 ```
