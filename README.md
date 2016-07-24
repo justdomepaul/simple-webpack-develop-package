@@ -1,39 +1,50 @@
 # Simple-webpack-develop-config
 
-Simple webpack develop config file
-
-### Prepare list
+## Installation
 ----------------
-`
-    > npm install eslint -g
-`
+npm:
+    *eslint
+```
+    $ npm install eslint -g
+```
+    *webpack
+```
+    $ npm install webpack webpack-dev-server -g
+```
+    * dependency package
+```
+    $ npm install
+```
 
-`
-    > npm install webpack webpack-dev-server -g
-`
-
-`
-    > npm install
-`
-
-### Entry folder
+## Entry folder
 ----------------
-    > dist/
-### Entry root
+```    
+    $ cd dist/
+```
+## Entry root
 --------------
-    > dist/index.html
-### develop step
-----------------
-    > 1. src/app is application folder and add your new application in it.
-    > 2. src/component is component folder and add your component in it.
-    > 3. start your webpack
-    > 4. npm run watch
-    > 5. npm run dev
-    > 6. browser to run http://localhost:8080/webpack-dev-server/index.html
+```
+    $ cd dist/index.html
+```
 
-### Npm command line
+## step
+----------------
+```    
+    1. add your app's entry point in src/app/[app's folder]/[app's name] 
+    2. write your component in src/component
+    3. open your webpack.config.js and add new entry point in entry object
+    4. npm run watch
+    5. npm run dev
+    6. open your browser and run this [localhost](http://localhost:8080/webpack-dev-server/index.html)
+```
+
+## Npm command line
 --------------------
     1. webpack to watch project
-    > npm run watch
+```    
+    $ npm run watch
+```
     2. webpack dev server to run
-    > npm run dev
+```   
+    $ npm run dev
+```
