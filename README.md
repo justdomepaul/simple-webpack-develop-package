@@ -3,32 +3,32 @@
 ## Installation
 ----------------
 npm:
-    *eslint
+
+eslint
 ```
     $ npm install eslint -g
 ```
-    *webpack
+
+webpack
 ```
     $ npm install webpack webpack-dev-server -g
 ```
-    * dependency package
+
+install dependency package
 ```
     $ npm install
 ```
 
 ## Entry folder
-----------------
 ```    
     $ cd dist/
 ```
 ## Entry root
---------------
 ```
     $ cd dist/index.html
 ```
 
 ## step
-----------------
 ```    
     1. add your app's entry point in src/app/[app's folder]/[app's name] 
     2. write your component in src/component
@@ -39,7 +39,6 @@ npm:
 ```
 
 ## Npm command line
---------------------
     1. webpack to watch project
 ```    
     $ npm run watch
