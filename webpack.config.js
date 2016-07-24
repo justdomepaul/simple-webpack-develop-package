@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require("webpack");
+var node_modules = __dirname + '/node_modules';
+
 
 var definePlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
@@ -10,7 +12,10 @@ var UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
     compress: { warnings: false }
 });
 
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common', 'common.js');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextObjectPlugin = new ExtractTextPlugin('./css/[name].css');
+
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendors', './js/vendors.js');
 
 var providePlugin = new webpack.ProvidePlugin({
     $: "jquery",
@@ -20,10 +25,13 @@ var providePlugin = new webpack.ProvidePlugin({
 });
 // => 注意到這邊的參數會轉換成檔名輸出所以請記得加副檔名
 
-module.exports = {
+var config = {
+    addVendor: function (name, path) {
+        this.resolve.alias[name] = path;
+        this.module.noParse.push(new RegExp(path));
+    },
     entry: {
-        // common: ['react', 'jquery'],
-        common: ['react'],
+        vendors: ['react', 'react-dom', 'jquery', 'bootstrap'],
         comment: './src/app/comment/app.js',
         // commentie: ['babel-polyfill', './src/app/comment/app.js'],
     },
@@ -39,6 +47,7 @@ module.exports = {
         failOnError: true
     },
     module: {
+        noParse: [],
         preLoaders: [
             {
                 test: /\.jsx$|\.js$/,
@@ -58,48 +67,52 @@ module.exports = {
             },
             {
         		test: /\.css$/,
-        		loader: 'style-loader!css-loader'
+        		loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         	},
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass'
+                loader: ExtractTextPlugin.extract(
+                    'style-loader',
+                    'css-loader!sass-loader?includePaths[]=' + path.resolve(__dirname, './node_modules/compass-mixins/lib')
+                )
             },
         	{
-        		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        		loader: "file-loader"
+        		test: /\.eot(\?[\s\S]+)?$/,
+        		loader: "file-loader?prefix=font/&name=fonts/[name].[ext]"
         	},
         	{
-        		test: /\.(woff|woff2)$/,
-        		loader: "url-loader?prefix=font/&limit=5000"
+        		test: /\.(woff|woff2)(\?[\s\S]+)?$/,
+        		loader: "url-loader?prefix=font/&limit=5000&name=fonts/[name].[ext]"
         	},
         	{
-        		test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        		loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+        		test: /\.ttf(\?[\s\S]+)?$/,
+        		loader: "url-loader?prefix=font/limit=10000&mimetype=application/octet-stream&name=fonts/[name].[ext]"
         	},
         	{
-        		test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        		loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+        		test: /\.svg(\?[\s\S]+)?$/,
+        		loader: "url-loader?prefix=font/limit=10000&mimetype=image/svg+xml&name=fonts/[name].[ext]"
         	},
         	{
         		test: /\.gif/,
-        		loader: "url-loader?limit=10000&mimetype=image/gif"
+        		loader: "url-loader?limit=10000&mimetype=image/gif&name=images/[name].[ext]"
         	},
         	{
         		test: /\.jpg/,
-        		loader: "url-loader?limit=10000&mimetype=image/jpg"
+        		loader: "url-loader?limit=10000&mimetype=image/jpg&name=images/[name].[ext]"
         	},
         	{
         		test: /\.png/,
-        		loader: "url-loader?limit=10000&mimetype=image/png"
+        		loader: "url-loader?limit=10000&mimetype=image/png&name=images/[name].[ext]"
         	},
             {
                 test: /\.(png!jpg)$/,
-                loader: 'file-loader?name=/img/[name].[ext]'
+                loader: 'file-loader?name=image/[name].[ext]'
             }
         ]
     },
     devtool: 'source-map',
     resolve: {
+        alias: {},
         extensions: ['', '.js', 'json']
     },
     devServer: {
@@ -108,7 +121,15 @@ module.exports = {
         inline: true,
         contentBase: './'
     },
-    // plugins: [definePlugin, UglifyJsPlugin, providePlugin, commonsPlugin],
-    // plugins: [definePlugin, UglifyJsPlugin, providePlugin],
-    plugins: [definePlugin, UglifyJsPlugin],
+    plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin],
 };
+
+config.addVendor('react', node_modules + '/react/dist/react.min.js');
+config.addVendor('react-dom', node_modules + '/react/lib/ReactDOM.js');
+config.addVendor('jquery', node_modules + '/jquery/dist/jquery.min.js');
+config.addVendor('bootstrap', node_modules + '/bootstrap/dist/js/bootstrap.min.js');
+config.addVendor('bootstrap.css', node_modules + '/bootstrap/dist/css/bootstrap.min.css');
+config.addVendor('ionicons.css', node_modules + '/ionicons/css/ionicons.min.css');
+
+
+module.exports = config;
