@@ -1,23 +1,36 @@
-var path = require('path')
+var path = require('path');
 var webpack = require("webpack");
 
 var definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
-  __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
+    __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+    __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
 });
 
-// var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+var UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+    compress: { warnings: false }
+});
+
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common', 'common.js');
+
+var providePlugin = new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery",
+    'window.jQuery': 'jquery',
+    'root.jQuery': 'jquery'
+});
 // => 注意到這邊的參數會轉換成檔名輸出所以請記得加副檔名
 
 module.exports = {
     entry: {
+        // common: ['react', 'jquery'],
+        common: ['react'],
         comment: './src/app/comment/app.js',
-        // dbtableapp: './src/app/dbtable/app.jsx'
+        // commentie: ['babel-polyfill', './src/app/comment/app.js'],
     },
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: 'js/[name]/[name].js'
+        filename: 'js/[name]/app.js'
         // [name] 會依據上面 entry 的屬性名稱變動
     },
     eslint: {
@@ -53,19 +66,19 @@ module.exports = {
             },
         	{
         		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        		loader: "file"
+        		loader: "file-loader"
         	},
         	{
         		test: /\.(woff|woff2)$/,
-        		loader: "url?prefix=font/&limit=5000"
+        		loader: "url-loader?prefix=font/&limit=5000"
         	},
         	{
         		test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        		loader: "url?limit=10000&mimetype=application/octet-stream"
+        		loader: "url-loader?limit=10000&mimetype=application/octet-stream"
         	},
         	{
         		test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        		loader: "url?limit=10000&mimetype=image/svg+xml"
+        		loader: "url-loader?limit=10000&mimetype=image/svg+xml"
         	},
         	{
         		test: /\.gif/,
@@ -78,11 +91,16 @@ module.exports = {
         	{
         		test: /\.png/,
         		loader: "url-loader?limit=10000&mimetype=image/png"
-        	}
+        	},
+            {
+                test: /\.(png!jpg)$/,
+                loader: 'file-loader?name=/img/[name].[ext]'
+            }
         ]
     },
+    devtool: 'source-map',
     resolve: {
-        extensions: ['', '.js', 'json', '.scss', 'css']
+        extensions: ['', '.js', 'json']
     },
     devServer: {
         historyApiFallback: true,
@@ -90,6 +108,7 @@ module.exports = {
         inline: true,
         contentBase: './'
     },
-    // plugins: [definePlugin, commonsPlugin],
-    plugins: [definePlugin],
+    // plugins: [definePlugin, UglifyJsPlugin, providePlugin, commonsPlugin],
+    // plugins: [definePlugin, UglifyJsPlugin, providePlugin],
+    plugins: [definePlugin, UglifyJsPlugin],
 };
