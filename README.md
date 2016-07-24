@@ -26,7 +26,7 @@ install dependency package
     $ cd dist/index.html
 ```
 
-## step
+## Step
 ```    
     1. add your app's entry point in src/app/[app's folder]/[app's name] 
     2. write your component in src/component
