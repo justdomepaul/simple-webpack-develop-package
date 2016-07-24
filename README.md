@@ -21,7 +21,7 @@ Simple webpack develop config file
     > dist/
 ### Entry root
 --------------
-    > index.html
+    > dist/index.html
 ### develop step
 ----------------
     > 1. src/app is application folder and add your new application in it.
