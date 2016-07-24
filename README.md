@@ -2,8 +2,6 @@
 
 ## Installation
 ----------------
-npm:
-
 eslint
 ```
     $ npm install eslint -g
