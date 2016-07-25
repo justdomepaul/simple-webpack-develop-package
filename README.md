@@ -1,5 +1,11 @@
 # Simple-webpack-develop-config
 
+## Enviroment
+----------------
+- node: ^4.4.7
+- npm: ^3.10.6
+- webpack: ^1.13.1
+
 ## Installation
 ----------------
 eslint
