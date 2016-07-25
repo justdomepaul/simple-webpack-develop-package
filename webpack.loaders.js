@@ -1,39 +1,45 @@
 module.exports = [
 	{
-		test: /\.jsx?$/,
-		exclude: /(node_modules|bower_components)/,
-		loaders: ['react-hot', 'babel'],
-	},
-	{
 		test: /\.css$/,
-		loader: 'style-loader!css-loader'
+		loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
 	},
 	{
-		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-		loader: "file"
+		test: /\.scss$/,
+		loader: ExtractTextPlugin.extract(
+			'style-loader',
+			'css-loader!sass-loader?includePaths[]=' + path.resolve(__dirname, './node_modules/compass-mixins/lib')
+		)
 	},
 	{
-		test: /\.(woff|woff2)$/,
-		loader: "url?prefix=font/&limit=5000"
+		test: /\.eot(\?[\s\S]+)?$/,
+		loader: "file-loader?prefix=font/&name=fonts/[name].[ext]"
 	},
 	{
-		test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-		loader: "url?limit=10000&mimetype=application/octet-stream"
+		test: /\.(woff|woff2)(\?[\s\S]+)?$/,
+		loader: "url-loader?prefix=font/&limit=5000&name=fonts/[name].[ext]"
 	},
 	{
-		test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-		loader: "url?limit=10000&mimetype=image/svg+xml"
+		test: /\.ttf(\?[\s\S]+)?$/,
+		loader: "url-loader?prefix=font/limit=10000&mimetype=application/octet-stream&name=fonts/[name].[ext]"
+	},
+	{
+		test: /\.svg(\?[\s\S]+)?$/,
+		loader: "url-loader?prefix=font/limit=10000&mimetype=image/svg+xml&name=fonts/[name].[ext]"
 	},
 	{
 		test: /\.gif/,
-		loader: "url-loader?limit=10000&mimetype=image/gif"
+		loader: "url-loader?limit=10000&mimetype=image/gif&name=images/[name].[ext]"
 	},
 	{
 		test: /\.jpg/,
-		loader: "url-loader?limit=10000&mimetype=image/jpg"
+		loader: "url-loader?limit=10000&mimetype=image/jpg&name=images/[name].[ext]"
 	},
 	{
 		test: /\.png/,
-		loader: "url-loader?limit=10000&mimetype=image/png"
+		loader: "url-loader?limit=10000&mimetype=image/png&name=images/[name].[ext]"
+	},
+	{
+		test: /\.(png!jpg)$/,
+		loader: 'file-loader?name=image/[name].[ext]'
 	}
 ];
