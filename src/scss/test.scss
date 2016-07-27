@@ -1,0 +1,23 @@
+// vendor plugin
+@import "~compass-mixins/lib/compass";
+@import "~susy/sass/susy";
+@import "~breakpoint-sass/stylesheets/breakpoint";
+@import "~bourbon/app/assets/stylesheets/bourbon";
+
+// self scss file
+@import "./modules/module.scss";
+
+// test code
+$a : yellow;
+body {
+    @include margin(null 10px 3em 20vh);
+    background-color: $a;
+    @include inline-block;
+    @include span(25%);
+}
+$high-tide: 500px;
+.johnny-utah {
+    @include breakpoint($high-tide) {
+        content: 'Whoa.';
+    }
+}

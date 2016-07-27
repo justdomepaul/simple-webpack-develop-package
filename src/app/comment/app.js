@@ -5,12 +5,14 @@ import CommentList from "../../component/comment/commentlist";
 import CommentForm from "../../component/comment/commentform";
 
 
+// test plugin import
 import "bootstrap.css";
 import "ionicons.css";
+// import "../../scss/test.scss";
 import "../../css/default.css";
 import $ from "jquery";
 import "bootstrap";
-// import "../static/index.js";
+
 
 class CommentBox extends React.Component {
     render () {

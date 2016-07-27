@@ -1,3 +1,14 @@
+/*test images base64 and copy to dist*/
 body {
     background-color: red;
+    /*background-image: url("../images/MilitaryBackpackRadio-48.png");*/
+    /*background-image: url("../images/176673.svg");*/
+    background-image: url("../images/20151212040916742.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.container + .container {
+    background-image: url("../images/MilitaryBackpackRadio-48.png");
+    background-repeat: no-repeat;
+    background-position: center center;
 }
