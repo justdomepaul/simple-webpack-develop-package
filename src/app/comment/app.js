@@ -34,5 +34,5 @@ render(
 
 // test jquery in this scope
 $(() => {
-    console.log("jquery is in it!");
+    // console.log("jquery is in it!");
 });

@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require("webpack");
 var node_modules = __dirname + '/node_modules';
 
-
 var definePlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
     __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
@@ -23,7 +22,23 @@ var providePlugin = new webpack.ProvidePlugin({
     'window.jQuery': 'jquery',
     'root.jQuery': 'jquery'
 });
-// => 注意到這邊的參數會轉換成檔名輸出所以請記得加副檔名
+
+// var HtmlWebpack = require('html-webpack-plugin');
+// add the handlePage to plugins array, will create a handle.html in the dist folder
+// this plugin and use produce mutiple html pages
+// var handelPage = new HtmlWebpack({
+//     title: "this is html wepack plugin",
+//     filename: "./handle.html",
+//     inject: "body",
+//     chunks: ["vendors", "comment"]
+// });
+
+
+// use livereload need add script
+// <script src="http://localhost:35729/livereload.js"></script>
+// in the html head tag
+var LiveReload = require('webpack-livereload-plugin');
+var LiveReloadPlugin = new LiveReload();
 
 var config = {
     addVendor: function (name, path) {
@@ -37,7 +52,8 @@ var config = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: '/dist/',
+        publicPath: '/simple-webpack/dist/',
+        // server的導入路徑
         filename: 'js/[name]/app.js'
         // [name] 會依據上面 entry 的屬性名稱變動
     },
@@ -121,11 +137,11 @@ var config = {
         inline: true,
         contentBase: './'
     },
-    plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin],
+    plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin, LiveReloadPlugin]
 };
 
 config.addVendor('react', node_modules + '/react/dist/react.min.js');
-config.addVendor('react-dom', node_modules + '/react/lib/ReactDOM.js');
+config.addVendor('react-dom', node_modules + '/react-dom/dist/react-dom.min.js');
 config.addVendor('jquery', node_modules + '/jquery/dist/jquery.min.js');
 config.addVendor('bootstrap', node_modules + '/bootstrap/dist/js/bootstrap.min.js');
 config.addVendor('bootstrap.css', node_modules + '/bootstrap/dist/css/bootstrap.min.css');
