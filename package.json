@@ -8,13 +8,15 @@
     "watch": "webpack -w --progress --colors",
     "dev-server": "webpack-dev-server --inline --hot --devtool eval --progress --colors --content-base dist/",
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-de v-server.js",
-    "build": "webpack -p --config webpack.production.config.js --progress --profile --colors",
+    "build": "webpack -p --config webpack.production.config.js --progress --profile --colors"
   },
   "author": "Max",
   "license": "MIT",
   "dependencies": {
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
