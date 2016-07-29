@@ -7,7 +7,7 @@
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
     "watch": "webpack -w --progress --colors",
     "dev-server": "webpack-dev-server --inline --hot --devtool eval --progress --colors --content-base dist/",
-    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-de v-server.js",
+    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "webpack -p --config webpack.production.config.js --progress --profile --colors"
   },
   "author": "Max",
