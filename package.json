@@ -51,6 +51,7 @@
     "sass-loader": "^4.0.0",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
+    "superagent": "^2.1.0",
     "susy": "^2.2.12",
     "svgo": "^0.6.6",
     "svgo-loader": "^1.1.0",
