@@ -46,8 +46,9 @@ var config = {
         this.module.noParse.push(new RegExp(path));
     },
     entry: {
-        vendors: ['react', 'react-dom', 'jquery', 'bootstrap'],
+        vendors: ['react', 'react-dom', 'redux', 'jquery', 'bootstrap'],
         comment: './src/app/comment/app.js',
+        testRedux: './src/app/redux/index.js'
         // commentie: ['babel-polyfill', './src/app/comment/app.js'],
     },
     output: {
@@ -64,13 +65,13 @@ var config = {
     },
     module: {
         noParse: [],
-        preLoaders: [
-            {
-                test: /\.jsx$|\.js$/,
-                exclude: /node_modules/,
-                loader: 'eslint-loader'
-            }
-        ],
+        // preLoaders: [
+        //     {
+        //         test: /\.jsx$|\.js$/,
+        //         exclude: /node_modules/,
+        //         loader: 'eslint-loader'
+        //     }
+        // ],
         loaders: [
             {
                 test: /\.jsx$|\.js$/,
@@ -141,6 +142,7 @@ var config = {
 };
 
 config.addVendor('react', node_modules + '/react/dist/react.min.js');
+config.addVendor('redux', node_modules + '/redux/dist/redux.min.js');
 config.addVendor('react-dom', node_modules + '/react-dom/dist/react-dom.min.js');
 config.addVendor('jquery', node_modules + '/jquery/dist/jquery.min.js');
 config.addVendor('bootstrap', node_modules + '/bootstrap/dist/js/bootstrap.min.js');
