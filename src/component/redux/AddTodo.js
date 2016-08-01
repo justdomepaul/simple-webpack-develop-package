@@ -1,5 +1,5 @@
-import React, { findDOMNode, Component, PropTypes } from "react";
-
+import React, { Component, PropTypes } from "react";
+import { findDOMNode } from "react-dom";
 export default class AddTodo extends Component {
     render() {
         return (
@@ -11,6 +11,8 @@ export default class AddTodo extends Component {
     }
 
     handleClick(e) {
+        console.log("handleClick")
+        console.error(findDOMNode)
         const node = findDOMNode(this.refs.input);
         const text = node.value.trim();
         this.props.onAddClick(text); // call action

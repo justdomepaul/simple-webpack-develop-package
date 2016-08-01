@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from "react";
 
 export default class Footer extends Component {
     renderFilter(filter, name) {
+        console.log("footer filter:")
+        console.log(filter)
+        console.log(name)
+        console.log(this.props.filter)
         if (filter === this.props.filter) {
             return name;
         }

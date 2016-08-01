@@ -11,6 +11,7 @@ export default class App extends Component {
     render() {
         const { dispatch, visibleTodos, visibilityFilter } = this.props;
         console.log("App component")
+        console.log(this.props)
         console.log(visibleTodos)
         console.log(visibilityFilter)
         return (
@@ -20,12 +21,12 @@ export default class App extends Component {
                         dispatch(addTodo(text))
                 }/>
                 <TodoList
-                    todos={this.props.visibleTodos}
+                    todos={visibleTodos}
                     onTodoClick={index =>
-                        dispatch(completeTodo(index))
+                        dispatch(toggleTodo(index))
                     } />
                 <Footer
-                    filter="SHOW_ALL"
+                    filter={visibilityFilter}
                     onFilterChange={nextFilter =>
                         dispatch(setVisibilityFilter(nextFilter))
                     } />
@@ -47,6 +48,9 @@ App.propTypes = {
 };
 
 function selectTodos(todos, filter) {
+    console.log("selectTodo function")
+    console.log(todos)
+    console.log(filter)
     switch (filter) {
         case VisibilityFilters.SHOW_ALL:
             return todos;
@@ -58,6 +62,9 @@ function selectTodos(todos, filter) {
 }
 
 function select(state) {
+    console.log("select function")
+    console.error("傳入reducers tree的state")
+    console.log(state)
     return {
         visibleTodos: selectTodos(state.todos, state.visibilityFilter),
         visibilityFilter: state.visibilityFilter
