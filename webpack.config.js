@@ -48,7 +48,9 @@ var config = {
     entry: {
         vendors: ['react', 'react-dom', 'redux', 'jquery', 'bootstrap'],
         comment: './src/app/comment/app.js',
-        testRedux: './src/app/redux/index.js'
+        // testRedux: './src/app/redux/index.js',
+        // testReduxReact: './src/container/App.js',
+        todoList: './src/component/redux/index.js'
         // commentie: ['babel-polyfill', './src/app/comment/app.js'],
     },
     output: {
