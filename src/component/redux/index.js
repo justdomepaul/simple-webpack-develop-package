@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import App from "../../container/App";
 import todoApp from "../../app/redux/reducers";
 
-let store = createStore(todoApp);
+let store = createStore(todoApp, window.devToolsExtension && window.devToolsExtension());
 console.log(store);
 
 let rootElement = document.getElementById("root");
