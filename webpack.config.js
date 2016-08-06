@@ -46,11 +46,9 @@ var config = {
         this.module.noParse.push(new RegExp(path));
     },
     entry: {
-        vendors: ['react', 'react-dom', 'redux', 'jquery', 'bootstrap'],
-        comment: './src/app/comment/app.js',
-        // testRedux: './src/app/redux/index.js',
-        // testReduxReact: './src/container/App.js',
-        todoList: './src/component/redux/index.js'
+        // vendors: ['react', 'react-dom', 'redux', 'jquery', 'bootstrap'],
+        vendors: ['react', 'react-dom', 'redux'],
+        // reddit: './src/app/reddit/index.js'
         // commentie: ['babel-polyfill', './src/app/comment/app.js'],
     },
     output: {
@@ -143,13 +141,13 @@ var config = {
     plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin, LiveReloadPlugin]
 };
 
-config.addVendor('react', node_modules + '/react/dist/react.min.js');
-config.addVendor('redux', node_modules + '/redux/dist/redux.min.js');
-config.addVendor('react-dom', node_modules + '/react-dom/dist/react-dom.min.js');
-config.addVendor('jquery', node_modules + '/jquery/dist/jquery.min.js');
-config.addVendor('bootstrap', node_modules + '/bootstrap/dist/js/bootstrap.min.js');
-config.addVendor('bootstrap.css', node_modules + '/bootstrap/dist/css/bootstrap.min.css');
-config.addVendor('ionicons.css', node_modules + '/ionicons/css/ionicons.min.css');
+// config.addVendor('react', node_modules + '/react/dist/react.min.js');
+// config.addVendor('redux', node_modules + '/redux/dist/redux.min.js');
+// config.addVendor('react-dom', node_modules + '/react-dom/dist/react-dom.min.js');
+// config.addVendor('jquery', node_modules + '/jquery/dist/jquery.min.js');
+// config.addVendor('bootstrap', node_modules + '/bootstrap/dist/js/bootstrap.min.js');
+// config.addVendor('bootstrap.css', node_modules + '/bootstrap/dist/css/bootstrap.min.css');
+// config.addVendor('ionicons.css', node_modules + '/ionicons/css/ionicons.min.css');
 
 
 module.exports = config;
