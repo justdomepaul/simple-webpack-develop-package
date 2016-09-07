@@ -50,3 +50,29 @@ webpack dev server to run:
 ```   
     $ npm run dev
 ```
+## Folder Construct
+```
+    |--project/
+    |
+    |------dist/
+    |----------js/
+    |----------css/
+    |----------fonts/
+    |
+    |------src/
+    |----------actions/
+    |----------animates/
+    |----------app/
+    |----------components/
+    |----------container/
+    |----------css/
+    |----------helper/
+    |----------img/
+    |----------middleware/
+    |----------plugin/
+    |----------reducers/
+    |----------scss/
+    |----------utils/
+    |
+    |------test/    
+```
