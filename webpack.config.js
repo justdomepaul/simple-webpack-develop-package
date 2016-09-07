@@ -1,10 +1,10 @@
-var path = require('path');
+var path = require("path");
 var webpack = require("webpack");
-var node_modules = __dirname + '/node_modules';
+var node_modules = __dirname + "/node_modules";
 
 var definePlugin = new webpack.DefinePlugin({
-    __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
-    __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
+    __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || "true")),
+    __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || "false"))
 });
 
 var UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
@@ -12,15 +12,15 @@ var UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
 });
 
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var ExtractTextObjectPlugin = new ExtractTextPlugin('./css/[name].css');
+var ExtractTextObjectPlugin = new ExtractTextPlugin("./css/[name].css");
 
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendors', './js/vendors.js');
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin("vendors", "./js/vendors.js");
 
 var providePlugin = new webpack.ProvidePlugin({
     $: "jquery",
     jQuery: "jquery",
-    'window.jQuery': 'jquery',
-    'root.jQuery': 'jquery'
+    "window.jQuery": "jquery",
+    "root.jQuery": "jquery"
 });
 
 // var HtmlWebpack = require('html-webpack-plugin');
@@ -37,7 +37,7 @@ var providePlugin = new webpack.ProvidePlugin({
 // use livereload need add script
 // <script src="http://localhost:35729/livereload.js"></script>
 // in the html head tag
-var LiveReload = require('webpack-livereload-plugin');
+var LiveReload = require("webpack-livereload-plugin");
 var LiveReloadPlugin = new LiveReload();
 
 var config = {
@@ -47,19 +47,19 @@ var config = {
     },
     entry: {
         // vendors: ['react', 'react-dom', 'redux', 'jquery', 'bootstrap'],
-        vendors: ['react', 'react-dom', 'redux'],
-        // reddit: './src/app/reddit/index.js'
+        vendors: ["react", "react-dom", "redux"],
+        // datatable: "./src/app/index.js",
         // commentie: ['babel-polyfill', './src/app/comment/app.js'],
     },
     output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/simple-webpack/dist/',
+        path: path.join(__dirname, "dist"),
+        publicPath: "/simple-webpack-develop-config/dist/",
         // server的導入路徑
-        filename: 'js/[name]/app.js'
+        filename: "js/[name]/app.js"
         // [name] 會依據上面 entry 的屬性名稱變動
     },
     eslint: {
-        configFile: './.eslintrc.json',
+        configFile: "./.eslintrc.json",
         failOnWarning: false,
         failOnError: true
     },
@@ -76,21 +76,21 @@ var config = {
             {
                 test: /\.jsx$|\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                loader: "babel-loader",
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'stage-1', 'react']
+                    presets: ["es2015", "stage-1", "react"]
                 }
             },
             {
         		test: /\.css$/,
-        		loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        		loader: ExtractTextPlugin.extract("style-loader", "css-loader")
         	},
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract(
-                    'style-loader',
-                    'css-loader!sass-loader?includePaths[]=' + path.resolve(__dirname, 'node_modules')
+                    "style-loader",
+                    "css-loader!sass-loader?includePaths[]=" + path.resolve(__dirname, "node_modules")
                 )
             },
         	{
@@ -123,20 +123,20 @@ var config = {
         	},
             {
                 test: /\.(png!jpg)$/,
-                loader: 'file-loader?name=image/[name].[ext]'
+                loader: "file-loader?name=image/[name].[ext]"
             }
         ]
     },
-    devtool: 'source-map',
+    devtool: "source-map",
     resolve: {
         alias: {},
-        extensions: ['', '.js', 'json']
+        extensions: ["", ".js", ".json"]
     },
     devServer: {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        contentBase: './'
+        contentBase: "./"
     },
     plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin, LiveReloadPlugin]
 };
@@ -146,8 +146,9 @@ var config = {
 // config.addVendor('react-dom', node_modules + '/react-dom/dist/react-dom.min.js');
 // config.addVendor('jquery', node_modules + '/jquery/dist/jquery.min.js');
 // config.addVendor('bootstrap', node_modules + '/bootstrap/dist/js/bootstrap.min.js');
-// config.addVendor('bootstrap.css', node_modules + '/bootstrap/dist/css/bootstrap.min.css');
-// config.addVendor('ionicons.css', node_modules + '/ionicons/css/ionicons.min.css');
+config.addVendor("bootstrap.css", node_modules + "/bootstrap/dist/css/bootstrap.min.css");
+config.addVendor("ionicons.css", node_modules + "/ionicons/css/ionicons.min.css");
+config.addVendor("materialize.css", node_modules + "/materialize-css/dist/css/materialize.css");
 
 
 module.exports = config;
