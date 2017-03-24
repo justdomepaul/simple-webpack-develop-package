@@ -10,7 +10,8 @@ var definePlugin = new webpack.DefinePlugin({
 	}
 });
 
-var UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+var UglifyJSP = require('uglifyjs-webpack-plugin');
+var UglifyJsPlugin = new UglifyJSP({
 	compress: { warnings: false }
 });
 
@@ -24,7 +25,7 @@ var UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
 //});
 
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var ExtractTextObjectPlugin = new ExtractTextPlugin("./css/[name].css");
+var ExtractTextObjectPlugin = new ExtractTextPlugin("./dist/css/[name].css");
 
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' });
 
@@ -63,94 +64,73 @@ var config = {
 					presets: ["es2015", "stage-1"]
 				}
 			},
+			//{
+			//	test: /(\.css|\.scss)$/,
+			//	use: ExtractTextPlugin.extract({
+			//		fallback: "style-loader",
+			//		use: [
+			//			{
+			//				loader: "css-loader",
+			//				query: {
+			//					sourceMap: true,
+			//					modules: true
+			//				}
+			//			},
+			//			{
+			//				loader: "sass-loader",
+			//				query: {
+			//					sourceMap: true
+			//				}
+			//			}
+			//		]
+			//	})
+			//},
 			{
 				test: /\.css$/,
-				exclude: /node_modules/,
-				loader: ExtractTextObjectPlugin.extract(
-					{
-						fallback: "style-loader",
-						use:  "css-loader"
-					}
-				)
+				use: ExtractTextObjectPlugin.extract({
+					fallback: "style-loader",
+					use: "css-loader"
+				})
 			},
-			//{
-			//	test: /\.scss$/,
-			//	use: [
-			//		{
-			//			loader: ExtractTextObjectPlugin.extract(
-			//				{
-			//					fallback: "style-loader",
-			//					use:  "css-loader!sass-loader?includePaths[]=" + node_modules
-			//				}
-			//			)
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.eot(\?[\s\S]+)?$/,
-			//	use: [
-			//		{
-			//			loader: "file-loader?prefix=font/&name=fonts/[name].[ext]"
-			//		}
-			//	]
-			//
-			//},
-			//{
-			//	test: /\.(woff|woff2)(\?[\s\S]+)?$/,
-			//	use: [
-			//		{
-			//			loader: "url-loader?prefix=font/&limit=5000&name=fonts/[name].[ext]"
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.ttf(\?[\s\S]+)?$/,
-			//	use: [
-			//		{
-			//			loader: "url-loader?prefix=font/limit=10000&mimetype=application/octet-stream&name=fonts/[name].[ext]"
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.svg(\?[\s\S]+)?$/,
-			//	use: [
-			//		{
-			//			loader: "url-loader?prefix=font/limit=10000&mimetype=image/svg+xml&name=fonts/[name].[ext]"
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.gif/,
-			//	use: [
-			//		{
-			//			loader: "url-loader?limit=10000&mimetype=image/gif&name=images/[name].[ext]"
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.jpg/,
-			//	use: [
-			//		{
-			//			loader: "url-loader?limit=10000&mimetype=image/jpg&name=images/[name].[ext]"
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.png/,
-			//	use: [
-			//		{
-			//			loader: "url-loader?limit=10000&mimetype=image/png&name=images/[name].[ext]"
-			//		}
-			//	]
-			//},
-			//{
-			//	test: /\.(png!jpg)$/,
-			//	use: [
-			//		{
-			//			loader: "file-loader?name=image/[name].[ext]"
-			//		}
-			//	]
-			//}
+			{
+				test: /\.scss$/,
+				use: ExtractTextObjectPlugin.extract({
+					fallback: 'style-loader',
+					use: ['css-loader', 'sass-loader']
+				})
+			},
+			{
+				test: /\.eot(\?[\s\S]+)?$/,
+				loader: "file-loader?prefix=font/&name=fonts/[name].[ext]"
+			},
+			{
+				test: /\.(woff|woff2)(\?[\s\S]+)?$/,
+				loader: "url-loader?prefix=font/&limit=5000&name=fonts/[name].[ext]"
+			},
+			{
+				test: /\.ttf(\?[\s\S]+)?$/,
+				loader: "url-loader?prefix=font/limit=10000&mimetype=application/octet-stream&name=fonts/[name].[ext]"
+			},
+			{
+				test: /\.svg(\?[\s\S]+)?$/,
+				loader: "url-loader?prefix=font/limit=10000&mimetype=image/svg+xml&name=fonts/[name].[ext]"
+			},
+			{
+				test: /\.gif/,
+				loader: "url-loader?limit=10000&mimetype=image/gif&name=images/[name].[ext]"
+			},
+			{
+				test: /\.jpg/,
+				loader: "url-loader?limit=10000&mimetype=image/jpg&name=images/[name].[ext]"
+			},
+			{
+				test: /\.png/,
+				loader: "url-loader?limit=10000&mimetype=image/png&name=images/[name].[ext]"
+			},
+			{
+				test: /\.(png!jpg)$/,
+				loader: "file-loader?name=image/[name].[ext]"
+			}
 		]
 	},
 	devtool: "source-map",
@@ -159,7 +139,7 @@ var config = {
 		alias: {
 			"jquery": path.resolve(node_modules, "./jquery/dist/jquery.min.js"),
 			"bootstrap.css": path.resolve(node_modules, "./bootstrap/dist/css/bootstrap.min.css"),
-			"ionicons.css": path.resolve(node_modules, "./ionicons/css/ionicons.min.css")
+			"ionicons.css": path.resolve(node_modules, "./ionicons/dist/css/ionicons.min.css")
 		},
 	},
 	devServer: {
@@ -178,6 +158,5 @@ var config = {
 //addVendor("jquery", path.resolve(node_modules, "./jquery/dist/jquery.min.js"));
 //addVendor("bootstrap.css", path.resolve(node_modules, "./bootstrap/dist/css/bootstrap.min.css"));
 //addVendor("ionicons.css", path.resolve(node_modules, "./ionicons/css/ionicons.min.css"));
-
 
 module.exports = config;

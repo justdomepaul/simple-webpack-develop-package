@@ -62,6 +62,7 @@
     "susy": "^2.2.12",
     "svgo": "^0.7.2",
     "svgo-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^0.3.1",
     "url-loader": "^0.5.8",
     "uuid": "^3.0.1",
     "webpack": "^2.3.1",
