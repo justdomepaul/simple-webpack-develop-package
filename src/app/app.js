@@ -1,3 +1,4 @@
 import $ from "jquery";
-import "bootstrap.css";
-//import "ionicons.css";
+
+import "../css/demo.css";
+import "../scss/demo.scss";

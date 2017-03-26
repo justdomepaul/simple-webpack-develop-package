@@ -6,7 +6,7 @@ var definePlugin = new webpack.DefinePlugin({
 	__DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || "true")),
 	__PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || "false")),
 	"process.env":{
-		"NODE_ENV": JSON.stringify("development")
+		"NODE_ENV": JSON.stringify("production")
 	}
 });
 
@@ -41,7 +41,9 @@ var config = {
 	},
 	module: {
 		noParse: [
-			new RegExp("./jquery/dist/jquery.min.js")
+			new RegExp("./jquery/dist/jquery.min.js"),
+			new RegExp("./bootstrap/dist/css/bootstrap.css"),
+			new RegExp("./ionicons/dist/css/ionicons.min.css")
 		],
 		rules: [
 			{
@@ -62,7 +64,7 @@ var config = {
 						{
 							loader: "css-loader",
 							query: {
-								minimize: false
+								minimize: true
 							}
 						},
 						{
@@ -105,12 +107,13 @@ var config = {
 			}
 		]
 	},
-	
-	devtool: "eval-source-map",
+	devtool: "source-map",
 	resolve: {
 		extensions: ['.js', '.jsx', '.json'],
 		alias: {
-			"jquery": path.resolve(node_modules, "./jquery/dist/jquery.min.js")
+			"jquery": path.resolve(node_modules, "./jquery/dist/jquery.min.js"),
+			"bootstrap.css": path.resolve(node_modules, "./bootstrap/dist/css/bootstrap.css"),
+			"ionicons.css": path.resolve(node_modules, "./ionicons/dist/css/ionicons.min.css")
 		},
 	},
 	//To run development server
@@ -119,8 +122,13 @@ var config = {
 	},
 	plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin]
 };
-if (process.env.NODE_ENV === "production") {
-	config.devtool = "source-map";
-}
+
+//var addVendor = function (name, path) {
+//	config.resolve.alias[name] = path;
+//	config.module.noParse.push(new RegExp(path));
+//};
+//addVendor("jquery", path.resolve(node_modules, "./jquery/dist/jquery.min.js"));
+//addVendor("bootstrap.css", path.resolve(node_modules, "./bootstrap/dist/css/bootstrap.min.css"));
+//addVendor("ionicons.css", path.resolve(node_modules, "./ionicons/css/ionicons.min.css"));
 
 module.exports = config;

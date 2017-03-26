@@ -1,0 +1,12 @@
+// vendor plugin
+@import "~compass-mixins/lib/compass";
+@import "~susy/sass/susy";
+@import "~breakpoint-sass/stylesheets/breakpoint";
+@import "~bourbon/app/assets/stylesheets/bourbon";
+
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "~materialize-css/bin/materialize.css";
+
+$base-font-size: 16px; //網頁預設文字大小
+$base-line-height: 24px; // 行距
+@include establish-baseline();
