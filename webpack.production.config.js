@@ -36,7 +36,7 @@ var config = {
 		path: path.join(__dirname, "dist"),
 		publicPath: "/dist/",
 		// server的導入路徑
-		filename: "js/[name]/app.js"
+		filename: "js/[name]/[name].js"
 		// [name] 會依據上面 entry 的屬性名稱變動
 	},
 	module: {
@@ -79,27 +79,27 @@ var config = {
 			},
 			{
 				test: /\.(woff|woff2)(\?[\s\S]+)?$/,
-				loader: "url-loader?prefix=font/&limit=5000&name=fonts/[name].[ext]"
+				loader: "url-loader?prefix=font/&limit=15000&name=fonts/[name].[ext]"
 			},
 			{
 				test: /\.ttf(\?[\s\S]+)?$/,
-				loader: "url-loader?prefix=font/limit=10000&mimetype=application/octet-stream&name=fonts/[name].[ext]"
+				loader: "url-loader?prefix=font/limit=15000&mimetype=application/octet-stream&name=fonts/[name].[ext]"
 			},
 			{
 				test: /\.svg(\?[\s\S]+)?$/,
-				loader: "url-loader?prefix=font/limit=10000&mimetype=image/svg+xml&name=fonts/[name].[ext]"
+				loader: "url-loader?prefix=font/limit=15000&mimetype=image/svg+xml&name=fonts/[name].[ext]"
 			},
 			{
 				test: /\.gif/,
-				loader: "url-loader?limit=10000&mimetype=image/gif&name=images/[name].[ext]"
+				loader: "url-loader?limit=15000&mimetype=image/gif&name=images/[name].[ext]"
 			},
 			{
 				test: /\.jpg/,
-				loader: "url-loader?limit=10000&mimetype=image/jpg&name=images/[name].[ext]"
+				loader: "url-loader?limit=15000&mimetype=image/jpg&name=images/[name].[ext]"
 			},
 			{
 				test: /\.png/,
-				loader: "url-loader?limit=10000&mimetype=image/png&name=images/[name].[ext]"
+				loader: "url-loader?limit=15000&mimetype=image/png&name=images/[name].[ext]"
 			},
 			{
 				test: /\.(png!jpg)$/,
@@ -115,10 +115,6 @@ var config = {
 			"bootstrap.css": path.resolve(node_modules, "./bootstrap/dist/css/bootstrap.css"),
 			"ionicons.css": path.resolve(node_modules, "./ionicons/dist/css/ionicons.min.css")
 		},
-	},
-	//To run development server
-	devServer: {
-		contentBase: __dirname + '/dist',
 	},
 	plugins: [definePlugin, UglifyJsPlugin, ExtractTextObjectPlugin, providePlugin, commonsPlugin]
 };
