@@ -5,7 +5,8 @@
 - node: \^6.10.0 lts
 - npm: \^3.10.6
 - webpack: \^2.3.2
-
+- n: \^2.1.7
+- ncu: \^2.10.5
 ## Installation
 eslint
 ```
@@ -20,6 +21,11 @@ webpack
 n
 ```
     $ sudo npm install n -g
+```
+
+npm-check-updates
+```
+    $ sudo npm install npm-check-updates -g
 ```
 
 install dependency package
@@ -46,29 +52,29 @@ install dependency package
 ```
 
 ## Step
-1. add your app's entry point in src/app/[app's folder]/[app's name]
+1. add your app's entry point in src/app/[app's folder]/[app's name].js
 2. write your component in src/component
 3. open your webpack.config.js and add new entry point in entry object
-4. npm run watch
-5. npm run dev
+4. sudo npm run watch
+5. sudo npm run hot
 6. open your browser and run this [localhost](http://localhost:8080/webpack-dev-server/index.html)
 
 
 ## Npm command line
 webpack to watch project:
 ```
-    $ npm run watch
+    $ sudo npm run watch
 ```
 webpack dev server to run:
 ```
-    $ npm run dev
+    $ sudo npm run hot
 ```
 
 ## Fix node-sass upgrade issue
 When you use node version over 5 or windows 10,
 you can use this way to save node-sass compile error.
 ```
-    $ npm rebuild node-sass
+    $ sudo npm rebuild node-sass
 ```
 
 ## Fix history in npm version 3 error
@@ -77,7 +83,7 @@ Note that you need to also install the history package since it is a peer depend
 and won't automatically be installed for you in npm version freater than 3.0.0.
 Run npm install history and you should be good.
 ```
-    $ npm install history
+    $ sudo npm install history
 ```
 
 ## Fix AirBnb eslint-plugin-jsx-a11y error
@@ -87,11 +93,11 @@ it eslint setting only in version 2.
 
 ## Update the latest version of node_modules
 ```
-    $ npm install -g npm-check-updates
-    $ ncu --upgradeAll
-    $ npm install
+    $ sudo npm install -g npm-check-updates
+    $ sudo ncu --upgradeAll
+    $ sudo npm update
 ```
-## Folder Construct
+## Folder Construct example
 ```
     |--project/
     |
